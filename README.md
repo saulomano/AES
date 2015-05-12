@@ -11,14 +11,14 @@ Array.Copy(temp, 0, hash, 0, 16) > Here you write from 0 to 15 position (16 char
 Array.Copy(temp, 0, hash, 15, 16) > Here is the bug. You start writing in position 15 instead of 16.
 
 Original visual basic code:
-
+```vbs
+Namespace EncryptionAes
 Imports Microsoft.VisualBasic
 Imports System
 Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
- 
-'Namespace EncryptionAes
+
 Public Class Encryption
     Public Shared pass As String = "SingleSignOnCryp"
  
@@ -63,4 +63,5 @@ Public Class Encryption
         End Try
     End Function
 End Class
-'End Namespace
+End Namespace
+```vbs
