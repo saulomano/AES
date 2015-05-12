@@ -64,4 +64,4 @@ Public Class Encryption
     End Function
 End Class
 End Namespace
-```vbs
+```
