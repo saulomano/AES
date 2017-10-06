@@ -18,6 +18,7 @@ public class Crypto {
 
 	private String password;
 	
+	
 	public Crypto(String password) {
 		super();
 		this.password = password;
@@ -25,7 +26,7 @@ public class Crypto {
 
 	public String encrypt(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
-		md.update(password.getBytes(Charsets.US_ASCII));
+		md.update(password.getBytes(Charset.forName("US-ASCII")));
 		byte[] rawKey = md.digest();
 		byte[] hash = new byte[32];
 		System.arraycopy(rawKey, 0, hash, 0, 16);
@@ -36,13 +37,13 @@ public class Crypto {
 		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 		cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
 
-		byte[] encrypted = cipher.doFinal(input.getBytes(Charsets.US_ASCII));
-		return new String(Base64.encodeBase64(encrypted));
+		byte[] encrypted = cipher.doFinal(input.getBytes(Charset.forName("US-ASCII")));
+		return new String(Base64.getEncoder().encodeToString(encrypted));
 	}
 	
 	public String decrypt(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
-		md.update(password.getBytes(Charsets.US_ASCII));
+		md.update(password.getBytes(Charset.forName("US-ASCII")));
 		byte[] rawKey = md.digest();
 		byte[] hash = new byte[32];
 		System.arraycopy(rawKey, 0, hash, 0, 16);
@@ -52,7 +53,9 @@ public class Crypto {
 		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 		cipher.init(Cipher.DECRYPT_MODE, skeySpec);
 
-		byte[] encrypted = cipher.doFinal(Base64.decodeBase64(input));
-		return new String(encrypted,Charsets.US_ASCII);
+		byte[] encrypted = cipher.doFinal(Base64.getDecoder().decode(input));
+		return new String(encrypted,Charset.forName("US-ASCII"));
 	}
+
+	
 }
