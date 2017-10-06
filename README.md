@@ -1,9 +1,12 @@
+Modificacion de proyecto forkeado del original, se elimina librerias apache y se reemplaza por java.
+agregar 
+
 # AES
 Migrated Visual Basic AES crypt/decrypt function to Java
 Two functions that encrypt/decrypt strings as the original visual basic code pasted below.
 
 Technical solution:
-Solution provided is J2SE, and it uses javax.crypto and java.security packages. Solution runs with JDK 7+. You don't need any J2EE library for run it. Solution requires JCE and an Apache library.
+Solution provided is J2SE, and it uses javax.crypto and java.security packages. Solution runs with JDK 8+. You don't need any J2EE library for run it. Solution requires JCE and an Apache library.
 
 Just for curiosity the original visual basic code has a bug. The position 15 of the array hash is overwritten, and the last one (position 31) is never written. I will keep this bug in my java code, because if not the functions will not work as visual basic ones.
 
